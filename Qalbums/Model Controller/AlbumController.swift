@@ -10,10 +10,11 @@ import Foundation
 
 class AlbumController {
     
-    static func testDecodingExampleAlbum() {
+    @discardableResult
+    static func testDecodingExampleAlbum() -> Album? {
         guard let url = Bundle.main.url(forResource: "exampleAlbum", withExtension: "json") else {
             NSLog("Error getting url of example json file")
-            return
+            return nil
         }
         
         var data = Data()
@@ -28,8 +29,27 @@ class AlbumController {
             let decoder = JSONDecoder()
             let album = try decoder.decode(Album.self, from: data)
             print("Success: \(album)")
+            return album
         } catch {
             NSLog("Error decoding Album: \(error)")
+            return nil
+        }
+    }
+    
+    static func testEncodingExampleAlbum() {
+        guard let album = testDecodingExampleAlbum() else {
+            NSLog("No album returned")
+            return
+        }
+        
+        do {
+            let encoder = JSONEncoder()
+            let encodedData = try encoder.encode(album)
+            print("Album successfully endoced: \(encodedData)")
+            return
+        } catch {
+            NSLog("Error ecoding Album: \(error)")
+            return
         }
     }
     

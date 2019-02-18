@@ -8,10 +8,16 @@
 
 import Foundation
 
-struct Song: Decodable {
+struct Song: Codable {
+    
+    // MARK: - Properties
+    
     let duration: String
     let id: UUID
     let title: String
+    
+    
+    // MARK: - CodingKeys
     
     enum SongKeys: String, CodingKey {
         case duration
@@ -27,6 +33,9 @@ struct Song: Decodable {
         case title
     }
     
+    
+    // MARK: - Decodable
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: SongKeys.self)
         let id = try container.decode(UUID.self, forKey: .id)
@@ -41,4 +50,19 @@ struct Song: Decodable {
         self.duration = duration
         self.title = title
     }
+    
+    
+    // MARK: - Encodable
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: SongKeys.self)
+        try container.encode(id.uuidString, forKey: .id)
+        
+        var durationContainer = container.nestedContainer(keyedBy: DurationKeys.self, forKey: .duration)
+        try durationContainer.encode(duration, forKey: .duration)
+        
+        var nameContainer = container.nestedContainer(keyedBy: NameKeys.self, forKey: .name)
+        try nameContainer.encode(title, forKey: .title)
+    }
+    
 }
