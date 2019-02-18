@@ -18,7 +18,7 @@ struct Album: Decodable {
     
     enum AlbumKeys: String, CodingKey {
         case artist
-        case covertArt
+        case coverArt
         case genres
         case id
         case name
@@ -35,7 +35,7 @@ struct Album: Decodable {
         let id = try container.decode(UUID.self, forKey: .id)
         let name = try container.decode(String.self, forKey: .name)
         
-        var coverArtContainer = try container.nestedUnkeyedContainer(forKey: .covertArt)
+        var coverArtContainer = try container.nestedUnkeyedContainer(forKey: .coverArt)
         var coverArtURLs: [URL] = []
         
         while !coverArtContainer.isAtEnd {
