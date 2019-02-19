@@ -17,6 +17,15 @@ struct Song: Codable {
     let title: String
     
     
+    // MARK: - Initializer
+    
+    init(duration: String, id: UUID = UUID(), title: String) {
+        self.duration = duration
+        self.id = id
+        self.title = title
+    }
+    
+    
     // MARK: - CodingKeys
     
     enum SongKeys: String, CodingKey {

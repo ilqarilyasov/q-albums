@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Album: Codable {
+struct Album: Codable, Equatable {
     
     // MARK: - Properties
     
@@ -18,6 +18,19 @@ struct Album: Codable {
     let id: UUID
     let name: String
     let songs: [Song]
+    
+    
+    // MARK: - Initializer
+    
+    init(artist: String, coverArtURLs: [URL], genres: [String],
+         id: UUID = UUID(), name: String, songs: [Song]) {
+        self.artist = artist
+        self.coverArtURLs = coverArtURLs
+        self.genres = genres
+        self.id = id
+        self.name = name
+        self.songs = songs
+    }
     
     
     // MARK: - CodingKeys
@@ -39,6 +52,7 @@ struct Album: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AlbumKeys.self)
+        
         let artist = try container.decode(String.self, forKey: .artist)
         let id = try container.decode(UUID.self, forKey: .id)
         let name = try container.decode(String.self, forKey: .name)
@@ -82,6 +96,7 @@ struct Album: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AlbumKeys.self)
+        
         try container.encode(artist, forKey: .artist)
         try container.encode(id.uuidString, forKey: .id)
         try container.encode(name, forKey: .name)
@@ -90,20 +105,17 @@ struct Album: Codable {
         
         for coverArtURL in coverArtURLs {
             var lowerCovertArtContainer = covertArtContainer.nestedContainer(keyedBy: CoverArtKeys.self)
-            try lowerCovertArtContainer.encode(coverArtURL, forKey: .url)
+            try lowerCovertArtContainer.encode(coverArtURL.absoluteString, forKey: .url)
         }
         
-        var genresContainer = container.nestedUnkeyedContainer(forKey: .genres)
-        
-        for genre in genres {
-            try genresContainer.encode(genre)
-        }
-        
-        var songsContainer = container.nestedUnkeyedContainer(forKey: .songs)
-        
-        for song in songs {
-            try songsContainer.encode(song)
-        }
+        try container.encode(genres, forKey: .genres)
+        try container.encode(songs, forKey: .songs)
+    }
+    
+    // MARK: - Equtable
+    
+    static func == (lhs: Album, rhs: Album) -> Bool {
+        return rhs.id == lhs.id
     }
     
 }

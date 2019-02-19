@@ -16,6 +16,34 @@ class AlbumController {
     private let baseURL = URL(string: "https://journal-coredata-b5a96.firebaseio.com/")!
     
     
+    // MARK: - CRUD
+    
+    func createAlbum(artist: String, covertArtURLs: [URL],
+                     genres: [String], name: String, songs: [Song]) {
+        
+        let album = Album(artist: artist, coverArtURLs: covertArtURLs,
+                          genres: genres, name: name, songs: songs)
+        albums.append(album)
+        put(album: album)
+    }
+    
+    func createSong(duration: String, title: String) -> Song {
+        let song = Song(duration: duration, title: title)
+        return song
+    }
+    
+    func update(album: Album, artist: String, covertArtURLs: [URL],
+                genres: [String], name: String, songs: [Song]) {
+        let updateAlbum = Album(artist: artist, coverArtURLs: covertArtURLs,
+                                genres: genres, name: name, songs: songs)
+        
+        guard let index = albums.index(of: album) else { return }
+        albums.remove(at: index)
+        albums.insert(updateAlbum, at: index)
+        
+        put(album: updateAlbum)
+    }
+    
     // MARK: - Networking
     
     func getAlbums(completion: @escaping (Error?) -> Void = { _ in }) {
@@ -81,7 +109,7 @@ class AlbumController {
     // MARK: - Testing
     
     @discardableResult
-    static func testDecodingExampleAlbum() -> Album? {
+    func testDecodingExampleAlbum() -> Album? {
         guard let url = Bundle.main.url(forResource: "exampleAlbum", withExtension: "json") else {
             NSLog("Error getting url of example json file")
             return nil
@@ -98,7 +126,8 @@ class AlbumController {
         do {
             let decoder = JSONDecoder()
             let album = try decoder.decode(Album.self, from: data)
-            print("Success: \(album)")
+            createAlbum(artist: album.artist, covertArtURLs: album.coverArtURLs,
+                        genres: album.genres, name: album.name, songs: album.songs)
             return album
         } catch {
             NSLog("Error decoding Album: \(error)")
@@ -106,7 +135,7 @@ class AlbumController {
         }
     }
     
-    static func testEncodingExampleAlbum() {
+    func testEncodingExampleAlbum() {
         guard let album = testDecodingExampleAlbum() else {
             NSLog("No album returned")
             return
