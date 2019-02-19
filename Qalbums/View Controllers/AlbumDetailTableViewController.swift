@@ -35,11 +35,34 @@ class AlbumDetailTableViewController: UITableViewController, SongTableViewCellDe
         tableView.estimatedRowHeight = 140
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     
     // MARK: - Actions
     
     @IBAction func saveBarButtonTapped(_ sender: Any) {
+        guard let name = albumNameTextField.text,
+            let artist = artistNameTextField.text,
+            let genres = genresTextField.text,
+            let coverArt = coverArtUrlsTextField.text else { return}
         
+        let genreArray = genres.components(separatedBy: ", ")
+        let coverArtArray = coverArt.components(separatedBy: ", ")
+        let covertArtURL = coverArtArray.map { URL(string: $0)! }
+        
+        if let album = album {
+            albumController?.update(album: album, artist: artist,
+                                    covertArtURLs: covertArtURL, genres: genreArray,
+                                    name: name, songs: tempsSongs)
+        } else {
+            albumController?.createAlbum(artist: artist, covertArtURLs: covertArtURL,
+                                         genres: genreArray, name: name, songs: tempsSongs)
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -48,12 +71,13 @@ class AlbumDetailTableViewController: UITableViewController, SongTableViewCellDe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tempsSongs.count + 1
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
         let songCell = cell as! SongTableViewCell
         
-        let song = tempsSongs[indexPath.row]
-        songCell.song = song
+//        let song = tempsSongs[indexPath.row]
+//        songCell.song = song
         songCell.delegate = self
 
         return cell

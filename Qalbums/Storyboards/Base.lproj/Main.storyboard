@@ -91,36 +91,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Sfq-vM-xWd">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="182"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-iR-nta">
-                                    <rect key="frame" x="8" y="28" width="359" height="134"/>
+                                    <rect key="frame" x="8" y="28" width="359" height="146"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Album name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ld3-RA-NWY">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="27.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="23"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Artist" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O8M-nC-Ehn">
-                                            <rect key="frame" x="0.0" y="35.5" width="359" height="27.5"/>
+                                            <rect key="frame" x="0.0" y="31" width="359" height="22.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Genres (separated by commas)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GQg-ka-Sgf">
-                                            <rect key="frame" x="0.0" y="71" width="359" height="27.5"/>
+                                            <rect key="frame" x="0.0" y="61.5" width="359" height="23"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Covert art urls (separated by commas)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNi-Gt-zse">
-                                            <rect key="frame" x="0.0" y="106.5" width="359" height="27.5"/>
+                                            <rect key="frame" x="0.0" y="92.5" width="359" height="22.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCu-eu-f1J">
+                                            <rect key="frame" x="0.0" y="123" width="359" height="23"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -134,29 +140,29 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="124" id="rGo-6k-Ipg" customClass="SongTableViewCell" customModule="Qalbums" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="198" width="375" height="124"/>
+                                <rect key="frame" x="0.0" y="210" width="375" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rGo-6k-Ipg" id="Z5v-Y4-cGd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="123.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kHR-pI-eHu">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kHR-pI-eHu">
                                             <rect key="frame" x="16" y="11" width="343" height="102"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Song title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDj-Dq-s4H">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="28.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Duration" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hUy-AV-lD5">
-                                                    <rect key="frame" x="0.0" y="38" width="343" height="30"/>
+                                                    <rect key="frame" x="0.0" y="36.5" width="343" height="29"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPJ-Vd-B5R">
-                                                    <rect key="frame" x="0.0" y="76" width="343" height="26"/>
+                                                    <rect key="frame" x="0.0" y="73.5" width="343" height="28.5"/>
                                                     <state key="normal" title="Add Song"/>
                                                     <connections>
                                                         <action selector="addSongButtonTapped:" destination="rGo-6k-Ipg" eventType="touchUpInside" id="7TI-6a-DjL"/>
