@@ -17,9 +17,7 @@ class SongTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     weak var delegate: SongTableViewCellDelegate?
-    var song: Song? {
-        didSet { updateViews() }
-    }
+    var song: Song? { didSet { updateViews() }}
     
     
     // MARK: - Outlets

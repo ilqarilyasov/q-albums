@@ -194,7 +194,7 @@
                     <connections>
                         <outlet property="albumNameTextField" destination="Ld3-RA-NWY" id="fRS-Ic-GoY"/>
                         <outlet property="artistNameTextField" destination="O8M-nC-Ehn" id="j32-tG-vln"/>
-                        <outlet property="covertArtUrlsTextField" destination="iNi-Gt-zse" id="z71-b9-XBl"/>
+                        <outlet property="coverArtUrlsTextField" destination="iNi-Gt-zse" id="z71-b9-XBl"/>
                         <outlet property="genresTextField" destination="GQg-ka-Sgf" id="1ZP-KD-Lo3"/>
                     </connections>
                 </tableViewController>
